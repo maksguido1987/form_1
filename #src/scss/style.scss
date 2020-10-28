@@ -1,1 +1,116 @@
+@import "nullstyle.scss";
 
+body {
+   font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sana Unicode", sans-serif;
+}
+
+*:focus {
+   outline: none;  // при фокусе убирает стили по умолчанию
+}
+input::placeholder {
+   color: rgb(168, 168, 230);
+}
+
+.container {
+   
+}
+.action-form {
+   input {
+      height: 20px;
+      width: 220px;
+      padding: 5px 8px;
+      border: 1px solid #aaa;
+      border-radius: 2px;
+      box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+      transition: padding .25s;
+      padding-right: 30px;
+      background: #fff url(../img/ambulance.png) no-repeat 98% center;
+      &:focus {
+         background: #fff;
+         border: 1px solid #555;
+         box-shadow: 0 0 3px #aaa;
+         padding-right: 70px;
+      }
+   }
+   textarea {
+      padding: 8px;
+      max-width: 300px;
+      max-height: 120px;
+      border: 1px solid #aaa;
+      border-radius: 2px;
+      box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+      transition: padding .25s;
+      padding-right: 30px;
+      background: #fff url(../img/ambulance.png) no-repeat 98% center;
+      &:focus {
+         background: #fff;
+         border: 1px solid #555;
+         box-shadow: 0 0 3px #aaa;
+         padding-right: 70px;
+      }
+   }
+   button {
+      margin-left: 156px;
+   }
+   h2, label {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+   }
+   h2 {
+      margin: 0;
+      display: inline;
+   }
+   label {
+      width: 150px;
+      margin-top: 3px;
+      display: inline;
+      float: left;
+      padding: 3px;
+   }
+   ul {
+      width: 750px;
+      list-style-type: none;
+      list-style-position: outside;
+      margin: 0;
+      padding: 0;
+   }
+   li {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      &:first-child {
+         border-bottom: 1px solid #777;
+      }
+      &:last-child {
+         border-bottom: 1px solid #777;
+      }
+   }
+}
+.required-notification {
+   font-size: 11px;
+   color: #d45252;
+   margin: 5px 0 0 0;
+   display: inline;
+   float: right;
+}
+.form-hint {
+   font-size: 11px;
+}
+.submit {
+   background-color: #68b12f;
+   border: 1px solid #509111;
+   border-radius: 3px;
+   box-shadow: inset 0 1px 0 0 #9fd574;
+   color: #fff;
+   font-weight: bold;
+   padding: 6px 20px;
+   text-align: center;
+   text-shadow: 0 -1px 0 #396715;
+   &:hover {
+      opacity: 0.85;
+      cursor: pointer;
+   }
+   &:active {
+      border: 1px solid #20911e;
+      box-shadow: 0 0 10px 5px #356b0b inset;
+   }
+}
