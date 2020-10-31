@@ -12,14 +12,14 @@ let { src, dest } = require('gulp'), // присваиваем переменн�
    uglify = require('gulp-uglify-es').default,
    babel = require('gulp-babel'),
    imagemin = require('gulp-imagemin'),
+   pngquant = require("imagemin-pngquant"),
    webp = require('gulp-webp'),
    webphtml = require('gulp-webp-html'),
    webpcss = require('gulp-webpcss'),
    svgsprite = require('gulp-svg-sprite'),
    newer = require('gulp-newer');
    
-
-let project_folder = require('path').basename(__dirname);
+let project_folder = require('path').basename(__dirname); // папка для выгрузки 
 let source_folder = '#src'; // папка с исходниками
 
 let path = {  // пути к файлам
@@ -34,18 +34,17 @@ let path = {  // пути к файлам
       html: [source_folder + '/*.html', '!'+ source_folder + '/_*.html' ],
       css: source_folder + '/scss/style.scss',
       js: source_folder + '/js/script.js',
-      img: source_folder + '/img/**/*.{jpg, png, svg, gif, webp}',
+      img: source_folder + '/img/**/*.+(png|jpg|gif|ico|svg|webp)',
       fonts: source_folder + '/fonts/*.ttf',
    },
    watch: {
       html: source_folder + '/**/*.html',
       css: source_folder + '/scss/**/*.scss',
       js: source_folder + '/js/**/*.js',
-      img: source_folder + '/img/**/*.{jpg, png, svg, gif, webp}',
+      img: source_folder + '/img/**/*.+(png|jpg|gif|ico|svg|webp)',
    },
    clean: './' + project_folder + '/'
 }
-
 function browserSync() {
    browsersync.init({
       server: {
@@ -55,7 +54,6 @@ function browserSync() {
       notify: false
    })
 }
-
 function html() {
    return src(path.src.html)
       .pipe(fileinclude())
@@ -63,7 +61,6 @@ function html() {
       .pipe(dest(path.build.html))
       .pipe(browsersync.stream())
 }
-
 function css() {
    return src(path.src.css)
       .pipe(scss({
@@ -82,8 +79,6 @@ function css() {
       .pipe(dest(path.build.css))
       .pipe(browsersync.stream())
 }
-
-
 function js() {
    return src(path.src.js)
       .pipe(fileinclude())
@@ -94,7 +89,6 @@ function js() {
       .pipe(dest(path.build.js))
       .pipe(browsersync.stream())
 }
-
 function images() {
    return src(path.src.img)
       .pipe(newer(path.build.img))
@@ -108,12 +102,12 @@ function images() {
          progressive: true,
          svgoPlugins: [{ removeViewBox: false }],
          interlaced: true,
-         optimizationLevel: 3 // 0 to 7
+         optimizationLevel: 3, // 0 to 7
+         use: [pngquant()]
       }))
       .pipe(dest(path.build.img))
       .pipe(browsersync.stream())
 }
-
 
 gulp.task('svgsprite', function () {
    return gulp.src([source_folder + '/iconsprite/*.svg'])
@@ -128,23 +122,18 @@ gulp.task('svgsprite', function () {
       .pipe(dest(path.build.img))
 }) // gulp svgsprite для запуска в отдельном терминале
 
-
 function watchFiles() {
    gulp.watch([path.watch.html], html).on('change', browsersync.reload); 
    gulp.watch([path.watch.css], css);
    gulp.watch([path.watch.js], js);
    gulp.watch([path.watch.img], images);
 }
-
 function clean() {
    return del(path.clean);
 }
 
-
 let build = gulp.series(clean, gulp.parallel(js, css, html, images));
 let watch = gulp.parallel(build, watchFiles, browserSync);
-
-
 
 exports.images = images;
 exports.js = js;

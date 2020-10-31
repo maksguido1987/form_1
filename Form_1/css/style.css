@@ -44,7 +44,7 @@ input::placeholder {
   -o-transition: padding .25s;
   transition: padding .25s;
   padding-right: 30px;
-  background: #fff url(../img/ambulance.png) no-repeat 98% center;
+  background: #fff url(../img/medical.png) cover no-repeat center;
 }
 
 .action-form input:focus {
@@ -67,7 +67,7 @@ input::placeholder {
   -o-transition: padding .25s;
   transition: padding .25s;
   padding-right: 30px;
-  background: #fff url(../img/ambulance.png) no-repeat 98% center;
+  background: #fff url(../img/medical.png) no-repeat 98% center;
 }
 
 .action-form textarea:focus {
@@ -158,6 +158,6 @@ input::placeholder {
           box-shadow: 0 0 10px 5px #356b0b inset;
 }
 
-.webp .action-form input{ background: #fff url(../img/ambulance.webp) no-repeat 98% center; }
+.webp .action-form input{ background: #fff url(../img/medical.webp) cover no-repeat center; }
 
-.webp .action-form textarea{ background: #fff url(../img/ambulance.webp) no-repeat 98% center; }
+.webp .action-form textarea{ background: #fff url(../img/medical.webp) no-repeat 98% center; }
