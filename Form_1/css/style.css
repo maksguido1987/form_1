@@ -13,23 +13,23 @@ body {
 }
 
 input::-webkit-input-placeholder {
-  color: #a8a8e6;
+  color: #66667c;
 }
 
 input::-moz-placeholder {
-  color: #a8a8e6;
+  color: #66667c;
 }
 
 input:-ms-input-placeholder {
-  color: #a8a8e6;
+  color: #66667c;
 }
 
 input::-ms-input-placeholder {
-  color: #a8a8e6;
+  color: #66667c;
 }
 
 input::placeholder {
-  color: #a8a8e6;
+  color: #66667c;
 }
 
 .action-form input {
@@ -44,7 +44,7 @@ input::placeholder {
   -o-transition: padding .25s;
   transition: padding .25s;
   padding-right: 30px;
-  background: #fff url(../img/medical.png) cover no-repeat center;
+  background: #fff url(../img/medical.png) 98%/7px 7px no-repeat;
 }
 
 .action-form input:focus {
@@ -53,6 +53,32 @@ input::placeholder {
   -webkit-box-shadow: 0 0 3px #aaa;
           box-shadow: 0 0 3px #aaa;
   padding-right: 70px;
+}
+
+.action-form input:focus:invalid {
+  background: url(../img/error.svg) 98%/15px 15px no-repeat;
+  -webkit-box-shadow: 0 0 5px #d45252;
+          box-shadow: 0 0 5px #d45252;
+  border-color: #b03535;
+}
+
+.action-form input:focus + .form-hint {
+  display: inline;
+}
+
+.action-form input:required:valid {
+  background: url(../img/check.svg) 98%/15px 15px no-repeat;
+  -webkit-box-shadow: 0 0 5px #5cd053;
+          box-shadow: 0 0 5px #5cd053;
+  border-color: #28921f;
+}
+
+.action-form input:required:valid + .form-hint {
+  background: #28921f;
+}
+
+.action-form input:required:valid + .form-hint::before {
+  color: #28921f;
 }
 
 .action-form textarea {
@@ -67,7 +93,7 @@ input::placeholder {
   -o-transition: padding .25s;
   transition: padding .25s;
   padding-right: 30px;
-  background: #fff url(../img/medical.png) no-repeat 98% center;
+  background: #fff url(../img/medical.png) 98%/7px 7px no-repeat;
 }
 
 .action-form textarea:focus {
@@ -76,6 +102,20 @@ input::placeholder {
   -webkit-box-shadow: 0 0 3px #aaa;
           box-shadow: 0 0 3px #aaa;
   padding-right: 70px;
+}
+
+.action-form textarea:focus:invalid {
+  background: url(../img/error.svg) 98%/15px 15px no-repeat;
+  -webkit-box-shadow: 0 0 5px #d45252;
+          box-shadow: 0 0 5px #d45252;
+  border-color: #b03535;
+}
+
+.action-form textarea:required:valid {
+  background: url(../img/check.svg) 98%/15px 15px no-repeat;
+  -webkit-box-shadow: 0 0 5px #5cd053;
+          box-shadow: 0 0 5px #5cd053;
+  border-color: #28921f;
 }
 
 .action-form button {
@@ -132,6 +172,22 @@ input::placeholder {
 
 .form-hint {
   font-size: 11px;
+  background: #d45252;
+  border-radius: 3px;
+  color: #fff;
+  margin: 0 0 0 8px;
+  padding: 1px 6px;
+  position: relative;
+  z-index: 999;
+  display: none;
+}
+
+.form-hint::before {
+  content: "\25C0";
+  color: #d45252;
+  position: absolute;
+  top: -2px;
+  left: -6px;
 }
 
 .submit {
@@ -158,6 +214,6 @@ input::placeholder {
           box-shadow: 0 0 10px 5px #356b0b inset;
 }
 
-.webp .action-form input{ background: #fff url(../img/medical.webp) cover no-repeat center; }
+.webp .action-form input{ background: #fff url(../img/medical.webp) 98%/7px 7px no-repeat; }
 
-.webp .action-form textarea{ background: #fff url(../img/medical.webp) no-repeat 98% center; }
+.webp .action-form textarea{ background: #fff url(../img/medical.webp) 98%/7px 7px no-repeat; }

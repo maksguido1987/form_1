@@ -8,7 +8,7 @@ body {
    outline: none;  // при фокусе убирает стили по умолчанию
 }
 input::placeholder {
-   color: rgb(168, 168, 230);
+   color: rgb(102, 102, 124);
 }
 
 .container {
@@ -24,12 +24,33 @@ input::placeholder {
       box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
       transition: padding .25s;
       padding-right: 30px;
-      background: #fff url(../img/medical.png) cover no-repeat center;
+      background: #fff url(../img/medical.png) 98%/7px 7px no-repeat;
       &:focus {
          background: #fff;
          border: 1px solid #555;
          box-shadow: 0 0 3px #aaa;
          padding-right: 70px;
+         &:invalid { // невалидные поля в фокусе
+            background: url(../img/error.svg) 98%/15px 15px no-repeat;
+            box-shadow: 0 0 5px #d45252;
+            border-color: #b03535;
+         }
+         +.form-hint {
+            display: inline;
+         }
+      }
+      &:required {
+         &:valid { // валидное поле
+            background: url(../img/check.svg) 98%/15px 15px no-repeat;
+            box-shadow: 0 0 5px #5cd053;
+            border-color: #28921f;
+            +.form-hint {
+               background: #28921f;
+               &::before {
+                  color: #28921f;
+               }
+            }
+         }
       }
    }
    textarea {
@@ -41,12 +62,24 @@ input::placeholder {
       box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
       transition: padding .25s;
       padding-right: 30px;
-      background: #fff url(../img/medical.png) no-repeat 98% center;
+      background: #fff url(../img/medical.png) 98%/7px 7px no-repeat;
       &:focus {
          background: #fff;
          border: 1px solid #555;
          box-shadow: 0 0 3px #aaa;
          padding-right: 70px;
+         &:invalid {
+            background: url(../img/error.svg) 98%/15px 15px no-repeat;
+            box-shadow: 0 0 5px #d45252;
+            border-color: #b03535;
+         }
+      }
+      &:required {
+         &:valid {
+            background: url(../img/check.svg) 98%/15px 15px no-repeat;
+            box-shadow: 0 0 5px #5cd053;
+            border-color: #28921f;
+         }
       }
    }
    button {
@@ -85,7 +118,7 @@ input::placeholder {
       }
    }
 }
-.required-notification {
+.required-notification {  // стили для обязательных полей с required
    font-size: 11px;
    color: #d45252;
    margin: 5px 0 0 0;
@@ -94,6 +127,21 @@ input::placeholder {
 }
 .form-hint {
    font-size: 11px;
+   background: #d45252;
+   border-radius: 3px;
+   color: #fff;
+   margin: 0 0 0 8px;
+   padding: 1px 6px;
+   position: relative;
+   z-index: 999;
+   display: none;
+   &::before {
+      content: "\25C0";
+      color: #d45252;
+      position: absolute;
+      top: -2px;
+      left: -6px;
+   }
 }
 .submit {
    background-color: #68b12f;
